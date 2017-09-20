@@ -1,9 +1,9 @@
 #include <Servo.h>
 
 // Arduino pin numbers Joystick
-const int SW_pin = 2; // digital pin connected to switch output
-const int X_pin = 1; // analog pin connected to X output
-const int Y_pin = 0; // analog pin connected to Y output
+//const int SW_pin = 2; // digital pin connected to switch output
+//const int X_pin = 1; // analog pin connected to X output
+//const int Y_pin = 0; // analog pin connected to Y output
 
 // Arduino pin numbers Servo
 const int servoPinL = 10;         // Linker Servo
@@ -22,7 +22,6 @@ int valB = 0;
 
 // Datenempfang
 String incoming;
-int empfbest;
 
  
 void setup()
@@ -32,9 +31,9 @@ void setup()
   ServoR.attach(servoPinR);
 
   // Einrichtung Joystick
-  pinMode(SW_pin, INPUT);
-  pinMode(13, OUTPUT);
-  digitalWrite(SW_pin, HIGH);
+//  pinMode(SW_pin, INPUT);
+//  pinMode(13, OUTPUT);
+//  digitalWrite(SW_pin, HIGH);
   
   // Setup Datenübertragung
   Serial.begin(9600);
@@ -52,7 +51,7 @@ void setup()
   Serial.print("\r\n");
   Serial.print("------------------");
   Serial.print("\r\n");
-
+  Serial.setTimeout(10000);
 }
  
 void loop()
@@ -61,29 +60,28 @@ void loop()
   // Datenempfang
   if(Serial.read()>0)
   {
-    incoming = Serial.read();
-    empfbest = 1;
+    incoming = Serial.readStringUntil("$");
     Serial.write("recieve Status ");
-    Serial.write(empfbest);
+    //Serial.write(empfbest);
     Serial.print(incoming);
     Serial.print("\r\n");
   }
   
   else
   {
-    empfbest = 0;
+//    empfbest = 0;
     Serial.write("recieve Status ");
-    Serial.write(empfbest);
+    //Serial.write(empfbest);
     Serial.print("\r\n");
   }
   
   // Auslesen des Joysticks
   
-valY = analogRead(Y_pin);
-valY = map(valY, 0, 1023, 0, 180);    //Konvertierung Analog Joystick -> Gradmaß
+//valY = analogRead(Y_pin);
+//valY = map(valY, 0, 1023, 0, 180);    //Konvertierung Analog Joystick -> Gradmaß
 
-valX = analogRead(X_pin);
-valX = map(valX, 0, 1023, 0, 180);    //Konvertierung Analog Joystick -> Gradmaß
+//valX = analogRead(X_pin);
+//valX = map(valX, 0, 1023, 0, 180);    //Konvertierung Analog Joystick -> Gradmaß
 
   //Fallunterscheidungen für Fahrprogramm
 
@@ -122,7 +120,7 @@ else{                                 //"Stop" Schleife
 //  Serial.print("  ");
 //  Serial.println(valY);
    
-  delay(500);
+  delay(50);
 
   
 
