@@ -22,7 +22,7 @@ int valB = 0;
 
 // Datenempfang
 int incoming;
-boolean empfbest;
+int empfbest;
 
  
 void setup()
@@ -41,12 +41,17 @@ void setup()
   if(Serial.available()>0) 
   {
     Serial.write("serial Hardware detected");
+    Serial.print("\r\n");
   }
   else
   {
     Serial.write("ERROR: serial Hardware unavailable");
+    Serial.print("\r\n");
   }
   Serial.write("setup complete");
+  Serial.print("\r\n");
+  Serial.print("------------------");
+  Serial.print("\r\n");
 
 }
  
@@ -57,16 +62,19 @@ void loop()
   if(Serial.read()>0)
   {
     incoming = Serial.read();
-    empfbest = true;
-    Serial.write("recieve Status " + empfbest);
+    empfbest = 1;
+    Serial.write("recieve Status ");
+    Serial.write(empfbest);
     Serial.print(incoming);
     Serial.print("\r\n");
   }
   
   else
   {
-    empfbest = false;
-    Serial.write("recieve Status " + empfbest);
+    empfbest = 0;
+    Serial.write("recieve Status ");
+    Serial.write(empfbest);
+    Serial.print("\r\n");
   }
   
   // Auslesen des Joysticks
@@ -110,11 +118,11 @@ else{                                 //"Stop" Schleife
     }
 
   // Monitoring von x und y Werten
-  Serial.print(valX);
-  Serial.print("  ");
-  Serial.println(valY);
+//  Serial.print(valX);
+//  Serial.print("  ");
+//  Serial.println(valY);
    
-  delay(5);
+  delay(50);
 
   
 
