@@ -39,6 +39,7 @@ void setup()
 void loop()
 {
   // Auslesen des Joysticks
+  
 valY = analogRead(Y_pin);
 valY = map(valY, 0, 1023, 0, 180);    //Konvertierung Analog Joystick -> Gradmaß
 
@@ -49,7 +50,7 @@ valX = map(valX, 0, 1023, 0, 180);    //Konvertierung Analog Joystick -> Gradma�
 
 if(valX > 140 && valY > 140){         // Fallunterscheidung: Vorwärts-Rechts
     ServoL.write(valX);
-    ServoR.write(valY);
+    ServoR.write(valY); 
 }
 else if(valX > 140 && valY < 40){     // Fallunterscheidung: Rückwärts-Rechts
     ServoL.write(valX);
@@ -64,7 +65,7 @@ else if(valX < 40 && valY < 40){      // Fallunterscheidung: Rückwärts-Links
     ServoR.write(valY);
   }
 
-else if(valY > 95 || valY < 85){           //if Schleife für Toleranz +-5° in Y Richtung & Fallunterscheidung Vorwärts/Rückwärts
+else if(valY > 95 || valY < 85){      //if Schleife für Toleranz +-5° in Y Richtung & Fallunterscheidung Vorwärts/Rückwärts
     ServoL.write(abs(valY-180));          
     ServoR.write(valY);
     }
