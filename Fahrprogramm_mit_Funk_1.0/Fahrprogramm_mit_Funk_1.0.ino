@@ -21,7 +21,7 @@ int valY = 440;
 int valB = 0;
 
 // Datenempfang
-int incoming;
+String incoming;
 int empfbest;
 
  
@@ -122,7 +122,7 @@ else{                                 //"Stop" Schleife
 //  Serial.print("  ");
 //  Serial.println(valY);
    
-  delay(50);
+  delay(500);
 
   
 
