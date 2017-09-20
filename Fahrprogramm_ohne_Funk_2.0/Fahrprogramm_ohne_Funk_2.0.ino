@@ -49,20 +49,20 @@ valX = map(valX, 0, 1023, 0, 180);    //Konvertierung Analog Joystick -> Gradma�
   //Fallunterscheidungen für Fahrprogramm
 
 if(valX > 120 && valY > 120){         // Fallunterscheidung: Vorwärts-Rechts
-    ServoL.write(valX);
-    ServoR.write(valY); 
+    ServoL.write(180);
+    ServoR.write(80); 
 }
 else if(valX > 120 && valY < 20){     // Fallunterscheidung: Rückwärts-Rechts
-    ServoL.write(valX);
-    ServoR.write(valY);
+    ServoL.write(0);
+    ServoR.write(100);
   }
 else if(valX < 20 && valY > 120){     // Fallunterscheidung: Vorwärts-Links
-    ServoL.write(valX);
-    ServoR.write(valY);
+    ServoL.write(100);
+    ServoR.write(0);
   }
 else if(valX < 20 && valY < 20){      // Fallunterscheidung: Rückwärts-Links
-    ServoL.write(valX);
-    ServoR.write(valY);
+    ServoL.write(80);
+    ServoR.write(180);
   }
 
 else if(valY > 95 || valY < 85){      //if Schleife für Toleranz +-5° in Y Richtung & Fallunterscheidung Vorwärts/Rückwärts
